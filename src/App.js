@@ -1,25 +1,106 @@
-import logo from './logo.svg';
-import './App.css';
+import { createContext } from "react";
+import "./App.css";
+import Nav from "./components/Nav/nav";
+import Note from "./components/Note/note";
+import data from "./data.json";
+import mark from "./assets/images/avatar-mark-webber.webp";
+import angela from "./assets/images/avatar-angela-gray.webp";
+import anna from "./assets/images/avatar-anna-kim.webp";
+import jacob from "./assets/images/avatar-jacob-thompson.webp";
+import kimberly from "./assets/images/avatar-kimberly-smith.webp";
+import nathan from "./assets/images/avatar-nathan-peterson.webp";
+import rizky from "./assets/images/avatar-rizky-hasanuddin.webp";
+import chess from "./assets/images/image-chess.webp";
+import { useContext } from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const msgContext = createContext();
+export function useMsg() {
+  return useContext(msgContext);
 }
 
+function App() {
+  const images = [mark, angela, jacob, rizky, kimberly, nathan, anna];
+  const notify = data.map((value, index) => {
+    if (index === 4) {
+      value.picture = chess;
+    }
+    value.profile = images[index];
+    return value;
+  });
+
+  return (
+    <header className="header">
+      <Nav />
+      {notify.map((info) => {
+        if (info.picture !== undefined) {
+          if (info.DM !== undefined) {
+            return (
+              <msgContext.Provider value={info.DM}>
+                <Note
+                  club={info.club}
+                  name={info.name}
+                  message={info.message}
+                  time={info.duration}
+                  profile={info.profile}
+                  status={info.status}
+                  DM={true}
+                >
+                  <img
+                    src={info.picture}
+                    alt="profile-comment"
+                    className="picture"
+                  />
+                </Note>
+              </msgContext.Provider>
+            );
+          } else {
+            return (
+              <Note
+                club={info.club}
+                name={info.name}
+                message={info.message}
+                time={info.duration}
+                profile={info.profile}
+                status={info.status}
+              >
+                <img
+                  src={info.picture}
+                  alt="profile-comment"
+                  className="picture"
+                />
+              </Note>
+            );
+          }
+        } else {
+          if (info.DM !== undefined) {
+            return (
+              <msgContext.Provider value={info.DM}>
+                <Note
+                  club={info.club}
+                  name={info.name}
+                  message={info.message}
+                  time={info.duration}
+                  profile={info.profile}
+                  status={info.status}
+                  DM={true}
+                />
+              </msgContext.Provider>
+            );
+          } else {
+            return (
+              <Note
+                club={info.club}
+                name={info.name}
+                message={info.message}
+                time={info.duration}
+                profile={info.profile}
+                status={info.status}
+              />
+            );
+          }
+        }
+      })}
+    </header>
+  );
+}
 export default App;

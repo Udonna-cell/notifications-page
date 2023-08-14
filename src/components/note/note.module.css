@@ -1,0 +1,44 @@
+.container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+}
+.notice {
+  background-color: hsl(210, 60%, 98%);
+  margin-bottom: 1rem;
+}
+.read,
+.notice {
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+}
+.read:not(:last-child) {
+  margin-bottom: 1rem;
+}
+.profile {
+  align-self: stretch;
+}
+.profile img {
+  width: calc(1.5rem * 2);
+}
+
+.active {
+  background-color:  hsl(1, 90%, 64%);
+  width: 10px;
+  height: 10px;
+  padding: 10px;
+  clip-path: circle(15.6% at 50% 50%);
+}
+.link {
+  text-decoration: none;
+  color: hsl(219, 85%, 26%);
+  font-weight: 900;
+  cursor: pointer;
+}
+.text {
+  color: hsl(219, 12%, 42%);
+}
+.time {
+  color: hsl(219, 14%, 63%);
+}

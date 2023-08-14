@@ -1,0 +1,20 @@
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+}
+.received {
+    padding: 0 1rem;
+    background-color: hsl(219, 85%, 26%);
+    color: hsl(0, 0%, 100%);
+    border-radius: 0.3rem;
+}
+.text {
+    color: hsl(219, 12%, 42%);
+    cursor: pointer;
+    font-weight: 500;
+}
+.text:hover {
+    color: hsl(219, 85%, 26%);
+}
