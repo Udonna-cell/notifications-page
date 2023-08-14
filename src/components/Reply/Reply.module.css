@@ -1,0 +1,9 @@
+.reply {
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid hsl(205, 33%, 90%);
+    cursor: pointer;
+}
+.reply:hover {
+    background-color: hsl(211, 68%, 94%);
+}

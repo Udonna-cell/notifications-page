@@ -3,6 +3,7 @@ import style from "./note.module.css";
 import Reply from "../Reply/Reply";
 
 function Note({ name, message, time, profile, status, children, DM, club }) {
+  console.log(status)
   return (
     <section className={status ? style.read : style.notice}>
       <article className={style.container}>
@@ -13,7 +14,7 @@ function Note({ name, message, time, profile, status, children, DM, club }) {
           <p>
             <b>{name} </b>
             <span className={style.text}>
-            {message} {club !== undefined? <a href="#!" className={style.link}>{club}</a> : false}
+            {message} {club !== false? <a href="#!" className={style.link}>{club}</a> : false}
             {!(status) ? <span className={style.active}></span> : false }
             </span>
             <br />

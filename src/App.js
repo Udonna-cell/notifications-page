@@ -11,7 +11,7 @@ import kimberly from "./assets/images/avatar-kimberly-smith.webp";
 import nathan from "./assets/images/avatar-nathan-peterson.webp";
 import rizky from "./assets/images/avatar-rizky-hasanuddin.webp";
 import chess from "./assets/images/image-chess.webp";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 const msgContext = createContext();
 export function useMsg() {
@@ -27,11 +27,15 @@ function App() {
     value.profile = images[index];
     return value;
   });
-
+  const [status, setStatus] = useState(notify.map(value => value.status))
+  // console.log(status)
+  const clear = ()=>{
+    setStatus(status.map(value => true))
+  }
   return (
     <header className="header">
-      <Nav />
-      {notify.map((info) => {
+      <Nav data={status} handle={clear} />
+      {notify.map((info, index) => {
         if (info.picture !== undefined) {
           if (info.DM !== undefined) {
             return (
@@ -42,7 +46,7 @@ function App() {
                   message={info.message}
                   time={info.duration}
                   profile={info.profile}
-                  status={info.status}
+                  status={status[index]}
                   DM={true}
                 >
                   <img
@@ -61,7 +65,7 @@ function App() {
                 message={info.message}
                 time={info.duration}
                 profile={info.profile}
-                status={info.status}
+                status={status[index]}
               >
                 <img
                   src={info.picture}
@@ -81,7 +85,7 @@ function App() {
                   message={info.message}
                   time={info.duration}
                   profile={info.profile}
-                  status={info.status}
+                  status={status[index]}
                   DM={true}
                 />
               </msgContext.Provider>
@@ -94,7 +98,7 @@ function App() {
                 message={info.message}
                 time={info.duration}
                 profile={info.profile}
-                status={info.status}
+                status={status[index]}
               />
             );
           }
